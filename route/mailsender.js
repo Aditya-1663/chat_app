@@ -17,17 +17,18 @@ const sendmail = async (req, res) => {
         }
     });
 
-    
-    let aditya=()=>{
-        console.log("aditya")
 
-    }
+    
+        // console.log(req.authtoken+"\n aditya")
+
+    var url=`http://localhost:3000/verifying/${req.authtoken}`
   
     var mailOptions = {
         from: EMAIL,
         to: EMAIL,
-        subject: 'Sending Email using Node.js',
-        html: `<a onClick=${{aditya}} >aditya</a>`,
+        subject: 'varification mail',
+        text:"please verify you account",
+        html: `<a href="${url}">Click Here</a>`,
 
         text: 'hello this is the first message'
     };

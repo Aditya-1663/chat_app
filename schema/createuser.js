@@ -15,6 +15,10 @@ const Createuser=mongoose.Schema({
         type:String,
         require:true
     },
+    confirm:{
+        type:Boolean,
+        
+    },
     date:{
         type:Date,
         default:Date.now
