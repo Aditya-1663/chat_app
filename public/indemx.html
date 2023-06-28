@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>indemx</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script defer src="http://localhost:5000/socket.io/socket.io.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js" integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+</head>
+<body>
+    <nav>hii</nav> 
+<div class="chatbox">
+    <div class="chats"><h1></h1></div>
+    <div class="chats"></div>
+    <div class="chats"></div>
+    <div class="chats"></div>
+    <div class="chats"></div>
+</div>
+    <div style="border:3px red solid;width:75%;float:right"> 
+    <div class="container">
+<!-- 
+        <div class="message right">aditya</div>
+        <div class="message left">kumar</div> -->
+       
+    </div>
+    <div class="send">
+        <form action="#" id="send-container">
+          <input type="text" id="messageinp" name="" id="">
+          <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <!-- <script src="https://cdn.socket.io/4.4.1/socket.io.esm.min.js"></script> -->
+    <script defer src="./js/client.js"></script>
+    <!-- <script>
+        const socket=io() 
+        // const socket=io() 
+        const form=document.getElementById('send-container')
+        const messageinput=document.getElementById('messageinp')
+        const messagecontainer=document.querySelector('.container')
+        
+        var name=prompt("enter your name")
+        alert(name) 
+         socket.emit('new_user_joined', name) 
+        </script> -->
+</body>
+</html>

@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    background-color: aqua;
+}
+
+nav {
+    height: 10vh;
+    background-color: slateblue;
+}
+
+.chatbox {
+    border: 3px red solid;
+    float: left;
+    width: 24%;
+    height: 90vh;
+    overflow-y: auto;
+    
+}
+.chats{
+    border: 2px black dotted;
+    height: 80px;
+    margin: 10px;
+    display: flex;
+    justify-content:center;
+    /* flex-direction: column; */
+}
+
+.container {
+
+    width: 50%;
+    background-color: blueviolet;
+    margin: auto;
+    margin-top: 12px;
+    height: 75vh;
+    border-radius: 10px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.message {
+    background-color: greenyellow;
+    width: 24%;
+    height: 15%;
+    margin: 5px 12px;
+    border: 2px solid black;
+    border-radius: 10px;
+
+
+}
+
+.left {
+    float: left;
+    clear: both;
+
+}
+
+.right {
+    float: right;
+    clear: both;
+}
+
+#send-container {
+    display: block;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    margin-top: 3px;
+
+}
+
+#messageinp {
+    width: 40%;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 34px;
+}
+
+.btn {
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 34px;
+}
