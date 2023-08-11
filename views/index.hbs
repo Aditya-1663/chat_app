@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>index</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script defer src="http://localhost:5000/socket.io/socket.io.js"></script>
+    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js" integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 </head>
 <body>
-    <nav>hii</nav> 
+    
+    <nav>hii</nav>  
 <div class="chatbox">
     {{#each userdata}}
-    <div class="chats"><h1>{{this.name}}</h1>
+    <div class="chats" onClick="aditya(this)" key={{this.id}}><h1>{{this.name}}</h1>
     {{!-- {{this.email}} --}}
     </div>
     {{/each}}

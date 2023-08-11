@@ -3,7 +3,7 @@ const connectToMongodb = require('./db')
 const  express = require('express')
 const path = require('path')
 const app = express()
-const port = 3000
+const port = 5000
 const http=require('http').Server(app)
 app.use(express.static(path.join(__dirname,'/public')))
 const users={} 
@@ -43,9 +43,14 @@ app.get('/verifying/:token', async (req, res) => {
     }
 
 })
-
+ 
 
 app.get('/', async (req, res) =>{
+    const data= await User.find()
+   
+    res.render("login",{userdata:data}) 
+})
+app.post('/index', async (req, res) =>{
     const data= await User.find()
    
     res.render("index",{userdata:data}) 
@@ -65,13 +70,14 @@ app.get('/', async (req, res) =>{
 
 io.on('connection',socket =>{
     socket.on('new_user_joined',(name)=>{ 
-        console.log("name:",name) 
-        console.log("name33:",users[socket.id])       
+        // console.log("name:",name) 
+        console.log("name33:",name)       
         users[socket.id]=name
-        socket.broadcast.emit('user-joined',name); 
+        socket.broadcast.emit('user-joined',(name,socket.id)); 
     })
-    socket.on('send',message=>{
-        socket.broadcast.emit('receive',{message:message,name:users[socket.id]})
+    socket.on('send',(message,receiveid)=>{
+        // console.log("revid",socket.id) -
+       socket.broadcast.emit('receive',{message:message,name:users[socket.id]})
     })
     socket.on('disconnect',message=>{
         socket.broadcast.emit('leftchat',{name:users[socket.id]})

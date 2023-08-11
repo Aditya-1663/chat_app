@@ -57,16 +57,20 @@ router.post('/createuser',
 
 // login part
 
-router.post('/login',[
+router.post('/login',
+[
    
     body("email","enter the valid email").isEmail(),
     body("password","enter the 6 char password").isLength({min:6})
 
-],async(req,res)=>{
+],
+async(req,res)=>{
+    console.log(req.body.email) 
     const validationcheck=validationResult(req)
+    //   res.json(req.body.email)
     if(!validationcheck.isEmpty()){
         return res.status(400).json({errors:validationcheck.array()})
-
+        
     }
     try {
         let user = await User.findOne({ email: req.body.email })
@@ -87,12 +91,13 @@ router.post('/login',[
     
           }
          const authtoken= jwt.sign(data,jwtscrect)
+         console.log(authtoken)
          res.json({authtoken})
 
 
         
     } 
-    
+     
     catch (error) {
         console.log(error)
         
@@ -101,6 +106,10 @@ router.post('/login',[
 
 })
 
+router.post('/my',(req,res)=>{
+    console.log("aditya")
+    res.send("aditya")
+})
 
 
 
