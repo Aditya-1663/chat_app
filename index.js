@@ -8,6 +8,7 @@ const http=require('http').Server(app)
 app.use(express.static(path.join(__dirname,'/public')))
 const users={} 
 const hbs=require('hbs')
+const session =require('express-session')
 // var hbs1 = hbs.create({
 //     helpers: {
 //         hello: function () { console.log('hello'); }
@@ -21,21 +22,33 @@ const io=require('socket.io')(http)
 const sendmail = require('./route/mailsender')
 var jwt = require('jsonwebtoken');
 const User = require('./schema/createuser')
+const Addfriend =require('./schema/friendlist')
 
+// this is using for keeping the value for the running session
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true
+  }));
 var cors = require('cors')
 
 app.set('view engine', 'hbs');
 app.use(cors())
 connectToMongodb();
-app.use(express.json())
+app.use(express.json()) 
 
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
 const jwtscrect = "adityakumarisagoodboy"
 app.use('/user', require('./route/Usercreate'))
+app.use('/myfriend', require('./route/Addfriend'))
+
 app.get('/verifying/:token', async (req, res) => {
     try {
         const data = jwt.verify(req.params.token, jwtscrect)
         await User.findByIdAndUpdate(data.user.id, { $set: { confirm: true } }, { new: true })
-        res.redirect('http://localhost:3000/index.html')
+        res.redirect('http://localhost:5000/')
     } catch (error) {
         console.log(error)
 
@@ -44,16 +57,27 @@ app.get('/verifying/:token', async (req, res) => {
 
 })
  
+ 
 
 app.get('/', async (req, res) =>{
     const data= await User.find()
+    
    
-    res.render("login",{userdata:data}) 
+    res.render("login",{userdata:data})  
 })
-app.post('/index', async (req, res) =>{
-    const data= await User.find()
-   
-    res.render("index",{userdata:data}) 
+
+
+
+app.get('/index', async (req, res) =>{
+    if(!req.session.email1){
+        return  res.redirect('http://localhost:5000/')
+    }
+    const user=await User.findOne({email:req.session.email1})
+    const data= await Addfriend.find({myemail:req.session.email1}) 
+    // console.log(req.session.email1)
+    // console.log(data.length)
+    res.render("index",{userdata:data})
+
 })
 
 // app.get('/', (req, res) =>{

@@ -1,11 +1,12 @@
 const User = require('../schema/createuser')
+
 const express = require('express')
 const bcrypt =require('bcryptjs')
 const router = express.Router()
 const jwt=require('jsonwebtoken')
 const {body ,validationResult}=require('express-validator')
 const sendmail=require('./mailsender')
-
+const session =require('express-session')
 
 const jwtscrect="adityakumarisagoodboy"
 
@@ -44,7 +45,7 @@ router.post('/createuser',
 
         }
         const authtoken=await jwt.sign(data,jwtscrect)
-          sendmail({authtoken})
+          sendmail({authtoken,email:req.body.email})
 
         res.json({user,authtoken})
     } catch (error) {
@@ -65,7 +66,8 @@ router.post('/login',
 
 ],
 async(req,res)=>{
-    console.log(req.body.email) 
+    // console.log(req.body.email) 
+    // console.log(res.body.json,'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq') 
     const validationcheck=validationResult(req)
     //   res.json(req.body.email)
     if(!validationcheck.isEmpty()){
@@ -91,8 +93,12 @@ async(req,res)=>{
     
           }
          const authtoken= jwt.sign(data,jwtscrect)
-         console.log(authtoken)
-         res.json({authtoken})
+        //  var email1=""
+         req.session.email1=req.body.email
+        //  console.log(authtoken)
+         res.redirect(`http://localhost:5000/index`)
+        //  res.render("index") 
+        //  res.json({authtoken})
 
 
         
