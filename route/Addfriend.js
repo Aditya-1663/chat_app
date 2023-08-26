@@ -21,7 +21,7 @@ router.post('/addfriend',
     try {
         let user1 = await User.findOne({ email: req.body.myemail})
         let user2 = await User.findOne({ email: req.body.friemail })
-        if(!user1||!user2||!user2.confirm){
+        if(!user1||!user2||user2.confirm){
             return res.status(404).json({error:'not extis'})
         }
 
