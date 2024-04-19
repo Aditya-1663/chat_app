@@ -3,7 +3,7 @@ const connectToMongodb = require('./db')
 const  express = require('express')
 const path = require('path')
 const app = express()
-const port = 5000
+const port =process.env.PORT|| 5000
 const http=require('http').Server(app)
 app.use(express.static(path.join(__dirname,'/public')))
 const users={} 
@@ -11,6 +11,7 @@ const hbs=require('hbs')
 const session =require('express-session')
 // var hbs1 = hbs.create({
 //     helpers: {
+
 //         hello: function () { console.log('hello'); }
 //     }
 // });
@@ -31,8 +32,11 @@ app.use(session({
     saveUninitialized: true
   }));
 var cors = require('cors')
-
+const pathviews=path.join(__dirname,'./tampletes/views')
+const pathpartial=path.join(__dirname,'./tampletes/partials')
 app.set('view engine', 'hbs');
+app.set('views',pathviews)
+hbs.registerPartials(pathpartial)
 app.use(cors())
 connectToMongodb();
 app.use(express.json()) 
@@ -54,11 +58,24 @@ app.get('/verifying/:token', async (req, res) => {
 
 
     }
-
+ 
 })
- 
+
  
 
+
+ 
+
+// app.get('/', async (req, res) =>{
+//    // const data= await User.find()
+//     const data= await Addfriend.find({myemail:'kumar@gmail.com'}) 
+//    // var json_data = JSON.stringify(data);
+//     // res.render("index",{userdata:data,email:req.session.email1})  
+//     res.render("index",{userdata:data,email:"kumar@gmail.com"})  
+// })
+
+
+// this is right
 app.get('/', async (req, res) =>{
     const data= await User.find()
     
@@ -67,16 +84,16 @@ app.get('/', async (req, res) =>{
 })
 
 
-
+var user={}
 app.get('/index', async (req, res) =>{
     if(!req.session.email1){
         return  res.redirect('http://localhost:5000/')
     }
-    const user=await User.findOne({email:req.session.email1})
+     user=await User.findOne({email:req.session.email1})
     const data= await Addfriend.find({myemail:req.session.email1}) 
     // console.log(req.session.email1)
     // console.log(data.length)
-    res.render("index",{userdata:data})
+    res.render("index",{userdata:data,email:req.session.email1})
 
 })
 
@@ -91,23 +108,50 @@ app.get('/index', async (req, res) =>{
 // })
 
 // chat()
-
+const socketToUserIdMap={}
+// const user=await User.findOne({email:"kumar@gmail.com"})
 io.on('connection',socket =>{
-    socket.on('new_user_joined',(name)=>{ 
+    socket.on('new_user_joined',(userid)=>{ 
+        socketToUserIdMap[socket.id] = userid;
         // console.log("name:",name) 
-        console.log("name33:",name)       
-        users[socket.id]=name
-        socket.broadcast.emit('user-joined',(name,socket.id)); 
+        console.log("userid",userid)       
+        console.log("socketid=",socket.id)       
+        console.log("socketid=",socketToUserIdMap)       
+        // users[socket.id]=name
+        socket.broadcast.emit('user-joined',(user.name,socket.id)); 
     })
-    socket.on('send',(message,receiveid)=>{
-        // console.log("revid",socket.id) -
-       socket.broadcast.emit('receive',{message:message,name:users[socket.id]})
+    socket.on('clicked',(userid)=>{
+        // socketToUserIdMap[socket.id] = userid;
+        Object.keys(socketToUserIdMap).forEach(element => {
+            console.log(element); 
+            
+        });
+        console.log("hello i am :",userid)
+ 
+    })
+    socket.on('send',async (message,userid,name12)=>{
+        // console.log("revid",socket) 
+        // console.log("revid:",userid) 
+        // const recipientSocket = io.sockets.sockets.find(
+        //     userid
+        //   );
+        const recipientSocketId = await Object.keys(socketToUserIdMap).find(
+            (socketId) => socketToUserIdMap[socketId] === userid
+          );
+          console.log("adsdf:",recipientSocketId)
+          if (recipientSocketId) {
+           io.to(recipientSocketId).emit('receive',{message:message,name:userid,name12:name12});
+          }
+          else{
+            console.log("not send")
+          }
+    //    socket.broadcast.emit('receive',{message:message,name:users[socket.id]})
     })
     socket.on('disconnect',message=>{
         socket.broadcast.emit('leftchat',{name:users[socket.id]})
         delete users[socket.id]
     })
-})
+}) 
 
 
 // module.exports=io

@@ -1,0 +1,27 @@
+.body{
+    /* background-color: red; */
+    height: calc(90vh + 11px);
+    width: 100%;
+    /* border: green 2px solid; */
+    color: rgb(10, 10, 10) !important;
+    /* font-size: 10px !important; */
+    
+
+}
+.my{
+    border: 2px solid green;
+}
+nav,.my-c{
+ 
+    background-color: rgb(250, 213, 168);
+    /* background: rgb(32, 18, 2) !important; */
+    border: 2px solid rgba(165, 42, 42, 0.779);
+}
+hr {
+    margin: 3px !important;
+}
+.profilesize{
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+}

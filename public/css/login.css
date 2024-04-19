@@ -4,8 +4,8 @@ body{
 }
 
 form{
+    border: 2px rgb(29, 219, 101) solid;
     
-   
     margin:0 500px;
 
 } 
@@ -14,3 +14,4 @@ center{
     color: aqua;
 
 }
+ 
