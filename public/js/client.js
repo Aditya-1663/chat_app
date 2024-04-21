@@ -9,7 +9,7 @@ const my1=document.querySelector('#senderid')
 // const aditya=function(data){ 
 //     console.log("gfx")
 // }
- 
+
 var userid
 
 var name12 =my1.innerHTML; 
@@ -77,7 +77,7 @@ form.addEventListener('submit',(e)=>{
 
 // var name1=prompt("enter your name")
 
- alert("adsds:=="+name12+"==sdffssfds")
+//  alert("adsds:=="+name12+"==sdffssfds")
  socket.emit('new_user_joined',name12) 
 
 

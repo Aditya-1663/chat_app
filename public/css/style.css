@@ -7,7 +7,14 @@ nav {
     height: 10vh;
     background-color: slateblue;
 } */
-
+.myfrilist{
+    display: block ;
+    /* flex-direction: column; */
+}
+.newfrilist{
+    display: none;
+    /* flex-direction: column; */
+}
 .chatbox {
     border-right: 3px rgb(237, 71, 71, 0.516) solid;
     float: left;

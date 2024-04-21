@@ -26,6 +26,8 @@ router.post('/createuser',
 
     }
     try {
+        console.log(req.body.name)
+        console.log(req.body.email)
         let user = await User.findOne({ email: req.body.email })
         if (user) {
             return res.status(404).json({error:'email is already exist'})
@@ -46,8 +48,8 @@ router.post('/createuser',
         }
         const authtoken=await jwt.sign(data,jwtscrect)
           sendmail({authtoken,email:req.body.email})
-
-        res.json({user,authtoken})
+          res.redirect(`http://localhost:5000/login`)
+        // res.json({user,authtoken})
     } catch (error) {
         
         console.log(error)

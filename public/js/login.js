@@ -1,4 +1,5 @@
-const fetch = require('fetch')
+// const fetch = require('fetch')
+
 
 const submitform= async(e)=>{
     // async function submitform(e){
@@ -37,3 +38,19 @@ const submitform= async(e)=>{
     
     // return false
 }
+//   create user
+const resgister=document.getElementById("register")
+resgister.addEventListener('click',function(){
+   
+ 
+      document.querySelector('.loginform').style.display='none';
+      document.querySelector('.createuser').style.display='flex';
+
+})
+const loginnow=document.getElementById("loginnow")
+loginnow.addEventListener('click',function(){
+  
+      document.querySelector('.loginform').style.display='flex';
+      document.querySelector('.createuser').style.display='none';
+
+})

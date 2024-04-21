@@ -1,17 +1,61 @@
-body{
-    background-color: black;
-    color: white;
+.body{
+    background-color: rgba(254, 178, 79, 0.425);
+    color: rgb(10, 10, 10);
+    /* border: 1px red dotted; */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 form{
-    border: 2px rgb(29, 219, 101) solid;
-    
-    margin:0 500px;
+    /* border: 2px rgb(29, 219, 101) solid; */
+    width:30%  !important;
+    /* margin:0 500px; */
 
 } 
+.subnt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 50px; */
+ 
+}
+.createuser{
+    display:none;
+}
+input:focus{
+    outline: none;
+    border: none;
+}
 center{
-    margin: 50px;
-    color: aqua;
+    margin: 20px;
+    color: rgba(165, 42, 42, 0.6);
+    font-family: cursive;
+}
+.my{
+    border: 2px solid red;
+}
 
+.signin{
+    /* border: 1px red solid; */
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 20px;
+    /* justify-content: center; */
+    background-color: transparent;
+    align-items: center;
+    border: none;
+    outline: none;
+    background-color: rgba(169, 91, 91, 0.153);
+}
+.signin:hover{
+    /* border-radius: 10px; */
+    outline: none;
+    background-color: rgba(169, 91, 91, 0.993);
 }
  

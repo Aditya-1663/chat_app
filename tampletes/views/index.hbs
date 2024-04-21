@@ -21,7 +21,7 @@
     <div class="body ">
 
 
-        <div class="chatbox border-right  ">
+        <div class="chatbox border-right myfrilist ">
             <div class="tosearch ">
                 <input type="search" name="" id="" placeholder="search">
             </div>
@@ -37,10 +37,38 @@
                 </div>
                 {{/each}}
             </div>
-            <div class=" addfri-box "><button class="btn exlarge btn-outline-dark" type="button">Add Friend +</button>
+            <div class=" addfri-box ">
+                <button class="btn exlarge btn-outline-dark" id="myfri" type="button">Add Friend +</button>
             </div>
 
         </div>
+
+     {{!-- add friend --}}
+         
+        <div class="chatbox border-right newfrilist ">
+            <div class="tosearch ">
+                <input type="search" name="" id="" placeholder="search">
+            </div>
+
+            <div class="frilist-box ">
+                {{#each userdata1}}
+                <div class="forhover">
+                    <div class="chats1 " key={{this.friemail}}>
+                        <div class=" "><img class="profile" src="./iage/idea.jpeg" alt="" srcset=""></div>
+                        <div class="fri-list">{{this.friname}}</div>
+                        {{!-- {{this.email}} --}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            <div class=" addfri-box ">
+                <button class="btn exlarge btn-outline-dark" id="newfri"type="button">MY Friends </button>
+            </div>
+
+        </div>
+     
+
+
 
         {{!-- message box --}}
         <div class="message-container ">
@@ -92,6 +120,7 @@
 
     <!-- <script src="/socket.io/socket.io.js"></script> -->
     <!-- <script src="https://cdn.socket.io/4.4.1/socket.io.esm.min.js"></script> -->
+    <script defer src="./js/index.js"></script>
     <script defer src="./js/client.js"></script>
     <!-- <script>
         const socket=io() 
