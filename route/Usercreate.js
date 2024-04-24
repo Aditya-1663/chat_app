@@ -69,7 +69,7 @@ router.post('/createuser',upload.single('profilephoto'),
         }
         const authtoken=await jwt.sign(data,jwtscrect)
           sendmail({authtoken,email:req.body.email})
-          res.redirect(`http://localhost:5000/`)
+          res.redirect(`/`)
         // res.json({user,authtoken})
     } catch (error) {
         
@@ -119,7 +119,7 @@ async(req,res)=>{
         //  var email1=""
          req.session.email1=req.body.email
         //  console.log(authtoken)
-         res.redirect(`http://localhost:5000/index`)
+         res.redirect(`/index`)
         //  res.render("index") 
         //  res.json({authtoken})
 
