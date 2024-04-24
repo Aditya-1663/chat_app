@@ -20,7 +20,8 @@ const submitform= async(e)=>{
           // const json=await response.json();
           // alert(JSON.stringify({email,password})) 
           // alert(response.json)
-          const response=axios.post("http://localhost:3000/user/login",{email,password}) 
+        //   const response=axios.post("http://localhost:3000/user/login",{email,password}) 
+          const response=axios.post("/user/login",{email,password}) 
           alert(response)
           console.log(response);
     } catch(e){

@@ -57,7 +57,7 @@ app.get("/verifying/:token", async (req, res) => {
       { $set: { confirm: true } },
       { new: true }
     );
-    res.redirect("http://localhost:5000/");
+    res.redirect("/");
   } catch (error) {
     console.log(error);
   }
@@ -65,30 +65,34 @@ app.get("/verifying/:token", async (req, res) => {
 
 // app.get('/', async (req, res) =>{
 //    // const data= await User.find()
-//     const data= await Addfriend.find({myemail:'kumar@gmail.com'})
-
+//     const data= await Addfriend.find({myemail:'kartik@gmail.com'})
+//     const users = await User.find({});
+//     const reqfri= await users.filter(list=>!data.some(list2=>(list.email===list2.friemail||list.email==list2.myemail)))
+//     // console.log(reqfri);
 //    // var json_data = JSON.stringify(data);
 //     // res.render("index",{userdata:data,email:req.session.email1})
-//     res.render("index",{userdata:data,email:"kumar@gmail.com"})
-// })
-
+//     res.render("index",{userdata1:reqfri,userdata:data,email:"kartik@gmail.com"})
+// }) 
+ 
 // this is right
 app.get("/", async (req, res) => {
   const data = await User.find();
-
+//data is not required to send in server
   res.render("login", { userdata: data });
 });
 
 var user = {};
 app.get("/index", async (req, res) => {
   if (!req.session.email1) {
-    return res.redirect("http://localhost:5000/");
+    return res.redirect("/");
   }
   user = await User.findOne({ email: req.session.email1 });
   const data = await Addfriend.find({ myemail: req.session.email1 });
+  const users = await User.find({});
+  const reqfri= await users.filter(list=>!data.some(list2=>(list.email===list2.friemail||list.email==list2.myemail)))
   // console.log(req.session.email1)
   // console.log(data.length)
-  res.render("index", { userdata: data, email: req.session.email1 });
+  res.render("index", {userdata1:reqfri, userdata: data, email: req.session.email1 });
 });
 
 // app.get('/', (req, res) =>{

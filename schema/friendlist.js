@@ -22,6 +22,10 @@ const Addfriend=mongoose.Schema({
         type:String,
         require:true
     },
+    friprofile:{
+         type:String,
+         
+    },
     
     date:{
         type:Date,

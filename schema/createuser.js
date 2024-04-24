@@ -11,6 +11,10 @@ const Createuser=mongoose.Schema({
         unique:true
     
     },
+    profile:{
+         type:String,
+         require:true
+    },
     password:{
         type:String,
         require:true

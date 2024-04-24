@@ -26,6 +26,10 @@ nav {
 }
 .frilist-box{
     height: calc(75vh + 6px);
+    overflow: scroll;
+}
+.frilist-box::-webkit-scrollbar{
+    display: none;
 }
 .chats1{ 
     border-bottom: 2px rgba(237, 71, 71, 0.516) solid;
@@ -37,6 +41,29 @@ nav {
     gap: 3px;
     justify-content:center;
     
+}
+.addnow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.font-s:hover{
+    background-color: saddlebrown ;
+    
+
+}
+.font-s{
+    
+    font-size: 10px;
+}
+.chats2{
+    /* border: 1px black solid; */
+    /* font-size: small; */
+
+    gap:2px;
+    grid-template-columns: 0.5fr 1.8fr  0.7fr !important;
+
 }
 .addfri-box{
     height: calc(90vh - 78vh - 45px + 11px);

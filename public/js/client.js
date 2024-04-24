@@ -1,4 +1,5 @@
-const socket=io('http://localhost:5000') 
+// const socket=io('http://localhost:5000') 
+const socket=io('') 
 // const socket=io() 
 const form=document.getElementById('send-container')
 const messageinput=document.getElementById('messageinp')
@@ -19,9 +20,12 @@ chats1.forEach(div => {
     div.addEventListener('click', function() {
        
         userid = div.getAttribute('key');
-        alert(userid)
+        // alert(userid)
         const tomess=document.querySelectorAll('.message')
-        document.querySelector('#intialbox').remove()
+       var tocheck= document.querySelector('#intialbox')
+       if(tocheck!=null){
+        tocheck.remove()
+       }
         document.querySelector('#send-container').style.display='block'
   
        
