@@ -25,7 +25,7 @@ const sendmail = async (req, res) => {
     
         // console.log(req.authtoken+"\n aditya")
 
-    var url=`/verifying/${req.authtoken}`
+    var url=`https://chat-app-vx3g.onrender.com//verifying/${req.authtoken}`
 
 
     htmlContent = htmlContent.replace(
