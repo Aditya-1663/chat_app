@@ -25,7 +25,7 @@ const sendmail = async (req, res) => {
     
         // console.log(req.authtoken+"\n aditya")
 
-    var url=`http://localhost:5000/verifying/${req.authtoken}`
+    var url=`/verifying/${req.authtoken}`
 
 
     htmlContent = htmlContent.replace(
