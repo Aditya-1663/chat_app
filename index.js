@@ -59,7 +59,7 @@ app.get("/verifying/:token", async (req, res) => {
     );
     res.redirect("/");
   } catch (error) {
-    console.log(error);
+    console.log(error+"..............................................................");
   }
 });
 
