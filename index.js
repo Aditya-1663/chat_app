@@ -51,6 +51,7 @@ app.use("/myfriend", require("./route/Addfriend"));
 
 app.get("/verifying/:token", async (req, res) => {
   try {
+    alert(req.params.token)
     const data = jwt.verify(req.params.token, jwtscrect);
     await User.findByIdAndUpdate(
       data.user.id,
