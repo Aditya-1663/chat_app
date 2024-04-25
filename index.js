@@ -51,14 +51,14 @@ app.use("/myfriend", require("./route/Addfriend"));
 
 app.get("/verifying/:token", async (req, res) => {
   try {
-    alert(req.params.token)
+    console.log(req.params.token)
     const data = jwt.verify(req.params.token, jwtscrect);
-    alert(req.params.token)
-    await User.findByIdAndUpdate(
-      data.user.id,
-      { $set: { confirm: true } },
-      { new: true }
-    );
+    
+    // await User.findByIdAndUpdate(
+    //   data.user.id,
+    //   { $set: { confirm: true } },
+    //   { new: true }
+    // );
     res.redirect("/");
   } catch (error) {
     console.log(error+"..............................................................");
