@@ -53,7 +53,7 @@ app.get("/verifying/:token", async (req, res) => {
   try {
     console.log(req.params.token)
     const data = jwt.verify(req.params.token, jwtscrect);
-    
+    console.log(data)
     await User.findByIdAndUpdate(
       data.user.id,
       { $set: { confirm: true } },
