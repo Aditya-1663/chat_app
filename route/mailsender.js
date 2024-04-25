@@ -42,8 +42,8 @@ const sendmail = async (req, res) => {
         to: EMAIL,
         subject: 'varification mail',
         text:"please verify you account",
-        // html: `<a href="${url}">Click Here</a>`,
         html: htmlContent,
+        html: `<a href="${url}">Click Here</a>`,
 
         text: 'hello this is the first message'
     };
