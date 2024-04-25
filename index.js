@@ -54,11 +54,11 @@ app.get("/verifying/:token", async (req, res) => {
     console.log(req.params.token)
     const data = jwt.verify(req.params.token, jwtscrect);
     
-    // await User.findByIdAndUpdate(
-    //   data.user.id,
-    //   { $set: { confirm: true } },
-    //   { new: true }
-    // );
+    await User.findByIdAndUpdate(
+      data.user.id,
+      { $set: { confirm: true } },
+      { new: true }
+    );
     res.redirect("/");
   } catch (error) {
     console.log(error+"..............................................................");
